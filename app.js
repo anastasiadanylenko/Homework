@@ -20,3 +20,13 @@ console.log(result);
 
 let squareRoot = Math.sqrt(number2);
 console.log(squareRoot);
+
+let animal = "cat";
+let animalString = animal.toString();
+console.log(animalString);
+
+let animalNumber = +animal;
+console.log(animalNumber);
+
+let animalBool = !!animal;
+console.log(animalBool);
