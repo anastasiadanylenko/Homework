@@ -1,32 +1,32 @@
 "use strict"
 
-let number1 = 2;
-let number2 = 4;
+function recursiveOddSumTo(number)  {
+  if (number < 1) {
+  return 0;
+  } else if (number % 2 !== 0) {
+    return number + recursiveOddSumTo(number - 2);
+} else if (number % 2 === 0) {
+  return recursiveOddSumTo(number - 1);
+}
+}
+console.log(recursiveOddSumTo(1)) // 1
+console.log(recursiveOddSumTo(10)) // 25
 
-let result = number1 + number2;
-console.log(result);
 
-result = number1 - number2;
-console.log(result);
 
-result = number1 * number2;
-console.log(result);
 
-result = number1 / number2;
-console.log(result);
+function iterativeOddSumTo(number) {
+  let sumOfNumber = 0;
+ for (let i = 1; i <= number; i++) {
+  if (i % 2 !== 0) {
+ sumOfNumber += i;
+  }
+}
+return sumOfNumber;
+ }
 
-result = number1 ** 2;
-console.log(result);
+console.log(iterativeOddSumTo(1)) // 1
+console.log(iterativeOddSumTo(10)) // 25
 
-let squareRoot = Math.sqrt(number2);
-console.log(squareRoot);
 
-let animal = "cat";
-let animalString = animal.toString();
-console.log(animalString);
 
-let animalNumber = +animal;
-console.log(animalNumber);
-
-let animalBool = !!animal;
-console.log(animalBool);
