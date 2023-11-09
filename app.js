@@ -2,7 +2,7 @@
 
 const date = new Date();
 
-function durationBetweenDates(start, end, measure) {
+function durationBetweenDates(start = new Date('21 May 1995'), end = new Date('09 October 2023'), measure = 'days') {
 
     const startDate = new Date(start);
     const endDate = new Date(end);
@@ -30,7 +30,7 @@ function durationBetweenDates(start, end, measure) {
 
 }
 
-
+console.log(durationBetweenDates());
 console.log(durationBetweenDates('02 Aug 1985', '03 Aug 1985', 'seconds')); // поверне '86400 seconds'
 console.log(durationBetweenDates('31 Jan 2022', '03 Feb 2021', 'days')); // поверне '362 days'
 
