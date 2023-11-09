@@ -1,65 +1,32 @@
 "use strict"
 
-const date = new Date();
+let number1 = 2;
+let number2 = 4;
 
-function durationBetweenDates(start, end, measure) {
+let result = number1 + number2;
+console.log(result);
 
-    const startDate = new Date(start);
-    const endDate = new Date(end);
+result = number1 - number2;
+console.log(result);
 
-    let result = endDate - startDate;
+result = number1 * number2;
+console.log(result);
 
-    switch(measure) {
-        case 'seconds':
-            result = result / 1000;
-            break;
-        case 'minutes':
-            result = result / (1000 * 60);
-            break;
-        case 'hours':
-            result = result / (1000 * 60 * 60);
-            break;
-        case 'days':
-            result = result / (1000 * 60 * 60 * 24);
-            break;
-        default:
-            return 'Default';
+result = number1 / number2;
+console.log(result);
 
-    }
-    return `${result} ${measure}`;
+result = number1 ** 2;
+console.log(result);
 
-}
+let squareRoot = Math.sqrt(number2);
+console.log(squareRoot);
 
+let animal = "cat";
+let animalString = animal.toString();
+console.log(animalString);
 
-console.log(durationBetweenDates('02 Aug 1985', '03 Aug 1985', 'seconds')); // поверне '86400 seconds'
-console.log(durationBetweenDates('31 Jan 2022', '03 Feb 2021', 'days')); // поверне '362 days'
+let animalNumber = +animal;
+console.log(animalNumber);
 
-
-
-
-const priceData = {
-    Apples: '23.4',
-    BANANAS: '48',
-    oRAngGEs: '48.7584',
-};
-
-function optimizer(data) {
-
-    let updatedPriceData = {};
-
-    for (const key in data) {
-        const newKey = key.toLowerCase();
-        const newData = parseFloat(data[key]).toFixed(2);
-
-        updatedPriceData[newKey] = newData;
-
-    }
-    return updatedPriceData;
-}
-let updatedPriceData = optimizer(priceData);
-
-
-
-
-
-console.log(updatedPriceData) // {apples: '23.40', bananas: '48.00', oranges: '48.76'}
+let animalBool = !!animal;
+console.log(animalBool);
