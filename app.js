@@ -1,65 +1,105 @@
 "use strict"
 
-const date = new Date();
-
-function durationBetweenDates(start = new Date('21 May 1995'), end = new Date('09 October 2023'), measure = 'days') {
-
-    const startDate = new Date(start);
-    const endDate = new Date(end);
-
-    let result = endDate - startDate;
-
-    switch(measure) {
-        case 'seconds':
-            result = result / 1000;
-            break;
-        case 'minutes':
-            result = result / (1000 * 60);
-            break;
-        case 'hours':
-            result = result / (1000 * 60 * 60);
-            break;
-        case 'days':
-            result = result / (1000 * 60 * 60 * 24);
-            break;
-        default:
-            return 'Default';
-
+function addThemAll(...args) {
+    let sum = 0;
+    for (let arg of args) {
+        sum += arg;
     }
-    return `${result} ${measure}`;
-
+    return sum;
 }
 
-console.log(durationBetweenDates());
-console.log(durationBetweenDates('02 Aug 1985', '03 Aug 1985', 'seconds')); // поверне '86400 seconds'
-console.log(durationBetweenDates('31 Jan 2022', '03 Feb 2021', 'days')); // поверне '362 days'
+console.log(addThemAll(2, 4)); // 6
+console.log(addThemAll(1, 2, 3, 4)); // 10
+console.log(addThemAll(5, 5, 10)); // 20
 
 
 
 
-const priceData = {
-    Apples: '23.4',
-    BANANAS: '48',
-    oRAngGEs: '48.7584',
-};
 
-function optimizer(data) {
 
-    let updatedPriceData = {};
 
-    for (const key in data) {
-        const newKey = key.toLowerCase();
-        const newData = parseFloat(data[key]).toFixed(2);
-
-        updatedPriceData[newKey] = newData;
-
+function multiply(a) {
+    return function (b) {
+        return a * b;
     }
-    return updatedPriceData;
 }
-let updatedPriceData = optimizer(priceData);
+
+console.log(multiply(5)(5))		// 25
+console.log(multiply(2)(-2))	        // -4
+console.log(multiply(4)(3))		// 12
 
 
 
 
 
-console.log(updatedPriceData) // {apples: '23.40', bananas: '48.00', oranges: '48.76'}
+
+
+
+const movies = [
+    {
+        movieName: 'The Thing',
+        releaseYear: 1982,
+        directedBy: 'Carpenter',
+        runningTimeInMinutes: 109,
+    },
+    {
+        movieName: 'Aliens',
+        releaseYear: 1986,
+        directedBy: 'Cameron',
+        runningTimeInMinutes: 137,
+    },
+    {
+        movieName: 'Men in Black',
+        releaseYear: 1997,
+        directedBy: 'Sonnenfeld',
+        runningTimeInMinutes: 98,
+    },
+    {
+        movieName: 'Predator',
+        releaseYear: 1987,
+        directedBy: 'McTiernan',
+        runningTimeInMinutes: 107,
+    },
+];
+
+function byProperty(property, direction) {
+    return function (a, b) {
+        const aValue = a[property];
+        const bValue = b[property];
+
+        if (direction === '>') {
+            return aValue > bValue ? 1 : -1;
+        } else if (direction === '<') {
+            return aValue < bValue ? 1 : -1;
+        } else {
+            console.error('Default');
+        }
+    };
+}
+
+console.log(movies.sort(byProperty('releaseYear', '>')));
+// виведе масив фільмів посортованих по року випуску, від старішого до новішого
+console.log(movies.sort(byProperty('runningTimeInMinutes', '<')));
+// виведе масив фільмів посортованих по їх тривалості, від найдовшого до найкоротшого
+console.log(movies.sort(byProperty('movieName', '>')));
+// виведе масив фільмів посортованих по назві, в алфавітному порядку
+
+
+
+
+
+
+const userNames = ['Петро', 'Емма', 'Петро', 'Емма', 'Марта', 'Яна', 'Василь', 'Антон', 'Олена', 'Емма'];
+
+function filterUnique(userNames) {
+
+    let userSet = new Set([userNames]);
+
+    for (let userName of userNames) {
+    }
+    return [...userSet];
+}
+
+
+
+console.log(filterUnique(userNames)); // ['Петро', 'Емма', 'Марта', 'Яна', 'Василь', 'Антон', 'Олена'];
