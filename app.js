@@ -1,32 +1,16 @@
 "use strict"
 
-let number1 = 2;
-let number2 = 4;
 
-let result = number1 + number2;
-console.log(result);
+let spanWithClass = document.querySelector('.hatredLevelCounter');
 
-result = number1 - number2;
-console.log(result);
+const ID = document.getElementById('headerTwo');
+console.log(ID);
 
-result = number1 * number2;
-console.log(result);
+const firstSection= document.querySelector('section');
+console.log(firstSection);
 
-result = number1 / number2;
-console.log(result);
+const hatredLevelBlock = document.getElementsByClassName('hatredLevelBlock');
+console.log(hatredLevelBlock);
 
-result = number1 ** 2;
-console.log(result);
-
-let squareRoot = Math.sqrt(number2);
-console.log(squareRoot);
-
-let animal = "cat";
-let animalString = animal.toString();
-console.log(animalString);
-
-let animalNumber = +animal;
-console.log(animalNumber);
-
-let animalBool = !!animal;
-console.log(animalBool);
+const point5 = document.querySelector('ul li:last-child').previousElementSibling
+console.log(point5);
