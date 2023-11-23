@@ -1,2 +1,2 @@
 # Homework
-Assignment: Змінні, типи даних та їх перетворення, оператори
+Assignment:  DOM дерево
