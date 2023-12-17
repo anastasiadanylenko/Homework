@@ -1,32 +1,72 @@
-"use strict"
+"use strict";
 
-let number1 = 2;
-let number2 = 4;
+console.log('start');
 
-let result = number1 + number2;
-console.log(result);
+const promise1 = new Promise((resolve, reject) => {
+    console.log(1)
+    resolve(2)
+})
 
-result = number1 - number2;
-console.log(result);
+promise1.then(res => {
+    console.log(res)
+})
 
-result = number1 * number2;
-console.log(result);
+console.log('end');
 
-result = number1 / number2;
-console.log(result);
+//консоль спочатку виведе start, оскільки код працює зверху вниз, і наш console.log одразу попадає в стек викликів,
+//далі перейде до промісу, одразу ж виведе в консоль 1, оскільки console.log потрапить до стеку викликів
+//далі виконується параметр (resolve), який означає успішно виконаний проміс (стан промісу стає fullfilled)
+//одразу ж викликається метод then, який потрапляє в чергу викликів
+//далі консоль виведе end і після цього до стеку потрипить результат нашого промісу
+// і консоль виведе 2(агрумент який ми передали в resolve)
 
-result = number1 ** 2;
-console.log(result);
+//start, 1, end, 2
 
-let squareRoot = Math.sqrt(number2);
-console.log(squareRoot);
 
-let animal = "cat";
-let animalString = animal.toString();
-console.log(animalString);
 
-let animalNumber = +animal;
-console.log(animalNumber);
+Promise.resolve(1)
+    .then((x) => x + 1)
+    .then((x) => { throw new Error('My Error') })
+    .catch(() => 1)
+    .then((x) => x + 1)
+    .then((x) => console.log(x))
+    .catch(console.error)
 
-let animalBool = !!animal;
-console.log(animalBool);
+        //в цоьму промісі при успішному виконанні виконаємо then, при помилці catch,
+        // кожен catch обробляє помилики усіх then між ним та попереднім catch
+        //потрапляємо в перший then, до нашого аргументу додаємо 1, результат 2
+        //далі в другому then помилка тому потрапляємо одразу в catch, який знову повертає нам число 1
+        //в наступному thenзнову додаємо 1, результат 2
+        // і виводимо наш результат в консоль
+        //останній catch не відпрацьовує, оскільки перед ним не було помилок
+
+        //2
+
+
+
+        const promise = new Promise(res => res(2));
+	promise.then(v => {
+	        console.log(v);
+	        return v * 2;
+	    })
+	    .then(v => {
+	        console.log(v);
+	        return v * 2;
+	    })
+	    .finally(v => {
+            console.log(v);
+	        return v * 2;
+	    })
+	    .then(v => {
+	        console.log(v);
+	    });
+
+        //при виконанні першого методу then, в консоль виводиться значення v, рівне 2, 
+        //передали його як аргумент в resolve до нашого промісу
+        //далі функція повертає 4, як результат виконання виразу
+        //в наcтупному then цей результат виводиться к консоль і знову виконується вираз, який буде отримувати значення 8
+//оскільки finally це метод який викликається в незалежнотсі від успішності промісу, він не може приймати аргументи  
+// та повертати жодне значення для наступного методу, тому отримуємо в консолі undefined
+//і отсанній then виводить нам в консоль результат з останнього then в якому відбувся return
+
+//2, 4, undefined, 8
